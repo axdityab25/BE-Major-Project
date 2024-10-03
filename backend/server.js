@@ -4,6 +4,8 @@ import { connectDB } from "./config/db.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import "dotenv/config";
+import userRouter from "./routes/userRoute.js";
+import aptitudeRouter from "./routes/aptitudeRoute.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,6 +25,8 @@ app.use(cors());
 connectDB();
 
 // api endpoints
+app.use("/api/aptitude", aptitudeRouter);
+app.use("/api/user", userRouter);
 
 app.get("/", (req, res) => {
 	res.send("API Working");
